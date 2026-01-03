@@ -85,9 +85,36 @@ export const Hero = () => {
       />
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Profile Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="relative flex-shrink-0"
+            >
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glow-primary">
+                <img
+                  src="/profile-image.jpg"
+                  alt="Tusnelde Endjala"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-6xl font-bold text-primary-foreground">TE</div>';
+                  }}
+                />
+              </div>
+              {/* Decorative rings */}
+              <div className="absolute inset-0 rounded-full border border-primary/20 scale-110 animate-pulse" />
+              <div className="absolute inset-0 rounded-full border border-accent/10 scale-125" />
+            </motion.div>
+
+            {/* Content */}
+            <div className="text-center lg:text-left flex-1">
+              {/* Badge */}
+              <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -195,6 +222,8 @@ export const Hero = () => {
               </motion.a>
             ))}
           </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}

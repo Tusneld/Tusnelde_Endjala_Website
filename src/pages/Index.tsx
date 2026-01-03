@@ -9,6 +9,7 @@ import { AWSRoadmap } from '@/components/AWSRoadmap';
 import { Leadership } from '@/components/Leadership';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { ScrollReveal } from '@/components/ScrollReveal';
 
 const Index = () => {
   return (
@@ -16,14 +17,30 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Experience />
-        <Education />
-        <Skills />
-        <Projects />
-        <AWSRoadmap />
-        <Leadership />
-        <Contact />
+        <ScrollReveal>
+          <About />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Experience />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Education />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Skills />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <AWSRoadmap />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Leadership />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Contact />
+        </ScrollReveal>
       </main>
       <Footer />
     </div>
