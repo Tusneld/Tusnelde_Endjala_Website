@@ -28,13 +28,23 @@ const leadershipRoles = [
 ];
 
 const sdgFocus = [
-  { code: '1', name: 'No Poverty', color: 'bg-red-600' },
-  { code: '4', name: 'Quality Education', color: 'bg-red-700' },
-  { code: '5', name: 'Gender Equality', color: 'bg-orange-500' },
-  { code: '8', name: 'Decent Work', color: 'bg-rose-600' },
-  { code: '9', name: 'Industry & Innovation', color: 'bg-amber-600' },
-  { code: '10', name: 'Reduced Inequalities', color: 'bg-pink-600' },
-  { code: '17', name: 'Partnerships', color: 'bg-blue-800' },
+  { code: '1', name: 'No Poverty', color: 'bg-[#E5243B]' },
+  { code: '2', name: 'Zero Hunger', color: 'bg-[#DDA63A]' },
+  { code: '3', name: 'Good Health', color: 'bg-[#4C9F38]' },
+  { code: '4', name: 'Quality Education', color: 'bg-[#C5192D]' },
+  { code: '5', name: 'Gender Equality', color: 'bg-[#FF3A21]' },
+  { code: '6', name: 'Clean Water', color: 'bg-[#26BDE2]' },
+  { code: '7', name: 'Clean Energy', color: 'bg-[#FCC30B]' },
+  { code: '8', name: 'Decent Work', color: 'bg-[#A21942]' },
+  { code: '9', name: 'Industry & Innovation', color: 'bg-[#FD6925]' },
+  { code: '10', name: 'Reduced Inequalities', color: 'bg-[#DD1367]' },
+  { code: '11', name: 'Sustainable Cities', color: 'bg-[#FD9D24]' },
+  { code: '12', name: 'Responsible Consumption', color: 'bg-[#BF8B2E]' },
+  { code: '13', name: 'Climate Action', color: 'bg-[#3F7E44]' },
+  { code: '14', name: 'Life Below Water', color: 'bg-[#0A97D9]' },
+  { code: '15', name: 'Life on Land', color: 'bg-[#56C02B]' },
+  { code: '16', name: 'Peace & Justice', color: 'bg-[#00689D]' },
+  { code: '17', name: 'Partnerships', color: 'bg-[#19486A]' },
 ];
 
 const certifications = [

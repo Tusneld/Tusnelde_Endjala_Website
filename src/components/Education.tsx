@@ -69,8 +69,8 @@ const educationData: DegreeData[] = [
   {
     title: 'B.Sc. Computer Science & IT (Honors)',
     institution: 'Triumphant College',
-    duration: '02/2025 - Present',
-    inProgress: true,
+    duration: '02/2021 - 11/2024',
+    inProgress: false,
     years: [
       {
         year: 1,
