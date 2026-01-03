@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Cloud, Instagram, Facebook } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Cloud, Instagram, Facebook } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 // Custom X (Twitter) icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -79,6 +80,7 @@ export const Navigation = () => {
 
           {/* Social Links & CTA */}
           <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
             {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
