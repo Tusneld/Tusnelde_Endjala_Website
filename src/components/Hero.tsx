@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, Download, ChevronDown, Cloud, Database, Code, Briefcase } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ChevronDown, Cloud, Database, Code, Briefcase, Instagram, Facebook } from 'lucide-react';
+
+// Custom X (Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const roles = [
   'Full-Stack Software Engineer (MERN)',
@@ -14,7 +21,9 @@ const roleIcons = [Code, Database, Cloud, Briefcase];
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Tusneld', label: 'GitHub', color: 'hover:text-foreground' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/tusnelde-endjala-a65302253/', label: 'LinkedIn', color: 'hover:text-blue-400' },
-  { icon: Twitter, href: 'https://x.com/TusneldeE', label: 'Twitter', color: 'hover:text-sky-400' },
+  { icon: XIcon, href: 'https://x.com/TusneldeE', label: 'X', color: 'hover:text-foreground' },
+  { icon: Instagram, href: 'https://www.instagram.com/endjalatusnelde/', label: 'Instagram', color: 'hover:text-pink-400' },
+  { icon: Facebook, href: 'https://www.facebook.com/TusneldeEndjala', label: 'Facebook', color: 'hover:text-blue-500' },
   { icon: Mail, href: 'mailto:tusneldelainae@gmail.com', label: 'Email', color: 'hover:text-cyan-400' },
 ];
 

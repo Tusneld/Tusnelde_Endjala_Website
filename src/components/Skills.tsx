@@ -17,6 +17,21 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
+    title: 'Data Analytics & Insights',
+    icon: BarChart3,
+    color: 'from-emerald-500 to-teal-500',
+    skills: [
+      { name: 'Advanced Excel', level: 'expert' },
+      { name: 'Power BI', level: 'advanced' },
+      { name: 'SQL (PostgreSQL/MySQL)', level: 'advanced' },
+      { name: 'Python (Pandas/NumPy)', level: 'advanced' },
+      { name: 'Data Visualization', level: 'advanced' },
+      { name: 'Statistical Analysis', level: 'intermediate' },
+      { name: 'ETL Pipelines', level: 'intermediate' },
+      { name: 'Data Warehousing', level: 'intermediate' },
+    ],
+  },
+  {
     title: 'Web Development (MERN)',
     icon: Code,
     color: 'from-blue-500 to-cyan-500',
@@ -43,24 +58,9 @@ const skillCategories: SkillCategory[] = [
       { name: 'DynamoDB', level: 'intermediate' },
       { name: 'CloudFormation', level: 'beginner' },
       { name: 'IAM', level: 'intermediate' },
-      { name: 'VPC', level: 'beginner' },
       { name: 'API Gateway', level: 'intermediate' },
-      { name: 'SageMaker', level: 'beginner' },
-    ],
-  },
-  {
-    title: 'Data Engineering',
-    icon: Database,
-    color: 'from-emerald-500 to-teal-500',
-    skills: [
-      { name: 'Python', level: 'advanced' },
-      { name: 'PySpark', level: 'intermediate' },
-      { name: 'ETL Pipelines', level: 'intermediate' },
       { name: 'AWS Glue', level: 'beginner' },
       { name: 'Redshift', level: 'beginner' },
-      { name: 'SQL', level: 'advanced' },
-      { name: 'Data Warehousing', level: 'intermediate' },
-      { name: 'Power BI', level: 'intermediate' },
     ],
   },
   {
