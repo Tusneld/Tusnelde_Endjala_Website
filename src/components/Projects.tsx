@@ -4,7 +4,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Github, ExternalLink, Code, Cloud, Database, Layers, Globe, Server, FileSpreadsheet, ClipboardList } from 'lucide-react';
 
-type ProjectCategory = 'all' | 'web' | 'data' | 'cloud';
+type ProjectCategory = 'all' | 'web' | 'data' | 'cloud' | 'analytics';
 
 interface Project {
   title: string;
@@ -42,7 +42,7 @@ const projects: Project[] = [
   {
     title: 'Data Pipeline with AWS Glue',
     description: 'ETL pipeline for processing and transforming large datasets using AWS Glue and Redshift for analytics.',
-    category: ['data', 'cloud'],
+    category: ['data', 'cloud', 'analytics'],
     techStack: ['AWS Glue', 'Redshift', 'Python', 'PySpark', 'S3'],
     icon: Database,
     gradient: 'from-emerald-500 to-teal-500',
@@ -52,7 +52,7 @@ const projects: Project[] = [
   {
     title: 'Medical Reality Show Database',
     description: 'Designed and implemented a relational database model using MS SQL Server for efficient data storage and retrieval.',
-    category: ['data'],
+    category: ['data', 'analytics'],
     techStack: ['MS SQL Server', 'Database Design', 'Data Modeling', 'ERD'],
     icon: Server,
     gradient: 'from-purple-500 to-pink-500',
@@ -62,10 +62,19 @@ const projects: Project[] = [
   {
     title: 'Sales Analysis Dashboard',
     description: 'Interactive sales analytics dashboard using Excel Pivot Tables and Power BI for business intelligence.',
-    category: ['data'],
+    category: ['analytics'],
     techStack: ['Excel', 'Pivot Tables', 'Power BI', 'Data Visualization'],
     icon: FileSpreadsheet,
     gradient: 'from-green-500 to-emerald-500',
+    status: 'completed',
+  },
+  {
+    title: 'Data Cleaning with Excel',
+    description: 'Performed comprehensive data cleaning and preprocessing on large datasets using Excel to ensure data quality and integrity.',
+    category: ['analytics'],
+    techStack: ['Excel', 'Data Cleaning', 'Data Quality', 'Formulas'],
+    icon: FileSpreadsheet,
+    gradient: 'from-teal-500 to-cyan-500',
     status: 'completed',
   },
   {
@@ -93,6 +102,7 @@ const projects: Project[] = [
 const filters: { label: string; value: ProjectCategory }[] = [
   { label: 'All Projects', value: 'all' },
   { label: 'Web Development', value: 'web' },
+  { label: 'Data Analysis', value: 'analytics' },
   { label: 'Data Engineering', value: 'data' },
   { label: 'Cloud / AWS', value: 'cloud' },
 ];

@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Twitter, Mail, Cloud } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Cloud, Instagram, Facebook } from 'lucide-react';
+
+// Custom X (Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
   { name: 'Education', href: '#education' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
@@ -15,7 +23,9 @@ const navItems = [
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Tusneld', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/tusnelde-endjala-a65302253/', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://x.com/TusneldeE', label: 'Twitter' },
+  { icon: XIcon, href: 'https://x.com/TusneldeE', label: 'X' },
+  { icon: Instagram, href: 'https://www.instagram.com/endjalatusnelde/', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/TusneldeEndjala', label: 'Facebook' },
 ];
 
 export const Navigation = () => {
