@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
 import { Education } from '@/components/Education';
+import { TechStack } from '@/components/TechStack';
 import { Projects } from '@/components/Projects';
 import { Leadership } from '@/components/Leadership';
 import { Contact } from '@/components/Contact';
@@ -23,6 +24,9 @@ const Index = () => {
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <Education />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <TechStack />
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <Projects />
