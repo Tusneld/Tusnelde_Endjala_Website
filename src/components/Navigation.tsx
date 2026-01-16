@@ -1,32 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Cloud, Instagram, Facebook } from 'lucide-react';
+import { Menu, X, Cloud } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
-
-// Custom X (Twitter) icon component
-const XIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
   { name: 'Education', href: '#education' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
-  { name: 'AWS Path', href: '#aws-roadmap' },
   { name: 'Contact', href: '#contact' },
-];
-
-const socialLinks = [
-  { icon: Github, href: 'https://github.com/Tusneld', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/tusnelde-endjala-a65302253/', label: 'LinkedIn' },
-  { icon: XIcon, href: 'https://x.com/TusneldeE', label: 'X' },
-  { icon: Instagram, href: 'https://www.instagram.com/endjalatusnelde/', label: 'Instagram' },
-  { icon: Facebook, href: 'https://www.facebook.com/TusneldeEndjala', label: 'Facebook' },
 ];
 
 export const Navigation = () => {
@@ -78,23 +61,9 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* Social Links & CTA */}
+          {/* Theme Toggle & CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
-            {socialLinks.map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={social.label}
-              >
-                <social.icon className="w-4 h-4" />
-              </motion.a>
-            ))}
             <motion.a
               href="#contact"
               className="ml-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
@@ -142,20 +111,6 @@ export const Navigation = () => {
                     >
                       {item.name}
                     </motion.a>
-                  ))}
-                </div>
-                <div className="flex gap-4 mt-8">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-lg bg-secondary text-foreground"
-                      aria-label={social.label}
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </a>
                   ))}
                 </div>
               </div>
