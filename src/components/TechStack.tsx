@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+
 // Tech stack items with brand colors
 const techStack = [
   { name: 'Power BI', color: '#F2C811' },
@@ -26,7 +28,7 @@ const techStack = [
   { name: 'FastAPI', color: '#009688' },
   { name: 'Express.js', color: '#000000' },
   { name: 'MongoDB', color: '#47A248' },
-  { name: 'Miro', color: '#FFD02F' },
+  { name: 'Miro', color: '#050038' },
   { name: 'Firebase', color: '#FFCA28' },
   { name: 'VS Code', color: '#007ACC' },
   { name: 'Postman', color: '#FF6C37' },
@@ -130,8 +132,19 @@ const TechIcon = ({ name, color }: { name: string; color: string }) => {
     case 'Linux':
       return (
         <svg viewBox="0 0 24 24" className="w-8 h-8">
-          <path fill="#FCC624" d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139z"/>
-          <path fill="#333" d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.468v.024c.016.264.09.466.205.665.022.03.049.06.076.089l-.039.032c-.055.046-.151.084-.175.132-.16-.21-.25-.467-.29-.736a1.848 1.848 0 01.001-.445c.027-.196.087-.384.177-.557.091-.175.218-.328.374-.447.157-.12.34-.188.535-.198zm-3.108.04c.209 0 .4.063.584.198.177.135.322.332.426.535.105.258.16.46.166.725.002.02.006.04.006.06v.1l-.003-.02a1.21 1.21 0 01-.064.68.86.86 0 01-.203.335c-.026-.016-.063-.032-.089-.043-.104-.045-.198-.064-.284-.133a1.3 1.3 0 00-.221-.066c.052-.06.146-.132.186-.198a.93.93 0 00.085-.402v-.02a1.21 1.21 0 00-.061-.401c-.043-.134-.101-.2-.18-.332-.083-.068-.168-.133-.268-.133h-.016c-.09 0-.176.032-.262.133a.8.8 0 00-.205.333 1.18 1.18 0 00-.09.468v.024c.018.264.091.466.207.665.02.03.048.06.075.089l-.039.033c-.055.046-.152.083-.175.13-.158-.207-.25-.464-.29-.734a1.85 1.85 0 01.001-.446c.027-.195.087-.383.177-.556.091-.175.22-.328.376-.448.157-.12.34-.188.536-.2h.013z"/>
+          {/* Tux penguin - yellow body */}
+          <path fill="#FCC624" d="M12 2C9 2 7 4 7 7c0 1 .5 2 1 3l-1 2c-1 1-2 3-2 5 0 2 1 3 2 4h10c1-1 2-2 2-4 0-2-1-4-2-5l-1-2c.5-1 1-2 1-3 0-3-2-5-5-5z"/>
+          {/* White belly */}
+          <ellipse cx="12" cy="14" rx="4" ry="5" fill="white"/>
+          {/* Black features - feet and beak outline */}
+          <path fill="#333" d="M9 20c-.5 0-1 .5-1 1s.5 1 1 1c.5 0 1-.5 1-1s-.5-1-1-1zm6 0c-.5 0-1 .5-1 1s.5 1 1 1c.5 0 1-.5 1-1s-.5-1-1-1z"/>
+          {/* Eyes */}
+          <circle cx="10" cy="7" r="1" fill="white"/>
+          <circle cx="14" cy="7" r="1" fill="white"/>
+          <circle cx="10.3" cy="7" r=".5" fill="#333"/>
+          <circle cx="14.3" cy="7" r=".5" fill="#333"/>
+          {/* Beak */}
+          <path fill="#E57A00" d="M12 8l-1 1.5h2L12 8z"/>
         </svg>
       );
     case 'HTML5':
@@ -220,8 +233,8 @@ const TechIcon = ({ name, color }: { name: string; color: string }) => {
       );
     case 'Miro':
       return (
-        <svg viewBox="0 0 24 24" fill={color} className="w-8 h-8">
-          <path d="M17.392 0H13.9L17 4.808 10.564 0H6.972l3.1 5.618L3.536 0H0l3.1 5.618L0 10.473l3.536 4.855L0 20.182 3.1 24h.436l6.536-11.763L6.972 24h3.592l6.536-13.132L13.9 24h3.492l3.1-4.436-3.1-4.864 3.508-4.855L17.392 0z"/>
+        <svg viewBox="0 0 24 24" className="w-8 h-8">
+          <path fill="#FFD02F" d="M17.392 0H13.9L17 4.808 10.564 0H6.972l3.1 5.618L3.536 0H0l3.1 5.618L0 10.473l3.536 4.855L0 20.182 3.1 24h.436l6.536-11.763L6.972 24h3.592l6.536-13.132L13.9 24h3.492l3.1-4.436-3.1-4.864 3.508-4.855L17.392 0z"/>
         </svg>
       );
     case 'VS Code':
@@ -390,28 +403,36 @@ export const TechStack = () => {
               }}
             >
               {duplicatedTech.map((tech, index) => (
-                <motion.div
-                  key={`row1-${index}`}
-                  className="flex-shrink-0 group"
-                  whileHover={{ scale: 1.2, y: -5 }}
-                >
-                  <div 
-                    className="w-16 h-16 rounded-2xl bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center transition-all duration-300 group-hover:border-transparent"
-                    style={{ 
-                      boxShadow: 'none',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 30px ${tech.color}60, 0 0 60px ${tech.color}30`;
-                      e.currentTarget.style.borderColor = tech.color;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = 'none';
-                      e.currentTarget.style.borderColor = '';
-                    }}
-                  >
-                    <TechIcon name={tech.name} color={tech.color} />
-                  </div>
-                </motion.div>
+                <TooltipProvider key={`row1-${index}`}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <motion.div
+                        className="flex-shrink-0 group cursor-pointer"
+                        whileHover={{ scale: 1.2, y: -5 }}
+                      >
+                        <div 
+                          className="w-16 h-16 rounded-2xl bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center transition-all duration-300 group-hover:border-transparent"
+                          style={{ 
+                            boxShadow: 'none',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `0 0 30px ${tech.color}60, 0 0 60px ${tech.color}30`;
+                            e.currentTarget.style.borderColor = tech.color;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = 'none';
+                            e.currentTarget.style.borderColor = '';
+                          }}
+                        >
+                          <TechIcon name={tech.name} color={tech.color} />
+                        </div>
+                      </motion.div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="font-medium">{tech.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               ))}
             </motion.div>
           </div>
@@ -431,28 +452,36 @@ export const TechStack = () => {
               }}
             >
               {[...duplicatedTech].reverse().map((tech, index) => (
-                <motion.div
-                  key={`row2-${index}`}
-                  className="flex-shrink-0 group"
-                  whileHover={{ scale: 1.2, y: -5 }}
-                >
-                  <div 
-                    className="w-16 h-16 rounded-2xl bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center transition-all duration-300 group-hover:border-transparent"
-                    style={{ 
-                      boxShadow: 'none',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 30px ${tech.color}60, 0 0 60px ${tech.color}30`;
-                      e.currentTarget.style.borderColor = tech.color;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = 'none';
-                      e.currentTarget.style.borderColor = '';
-                    }}
-                  >
-                    <TechIcon name={tech.name} color={tech.color} />
-                  </div>
-                </motion.div>
+                <TooltipProvider key={`row2-${index}`}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <motion.div
+                        className="flex-shrink-0 group cursor-pointer"
+                        whileHover={{ scale: 1.2, y: -5 }}
+                      >
+                        <div 
+                          className="w-16 h-16 rounded-2xl bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center transition-all duration-300 group-hover:border-transparent"
+                          style={{ 
+                            boxShadow: 'none',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `0 0 30px ${tech.color}60, 0 0 60px ${tech.color}30`;
+                            e.currentTarget.style.borderColor = tech.color;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = 'none';
+                            e.currentTarget.style.borderColor = '';
+                          }}
+                        >
+                          <TechIcon name={tech.name} color={tech.color} />
+                        </div>
+                      </motion.div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="font-medium">{tech.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               ))}
             </motion.div>
           </div>

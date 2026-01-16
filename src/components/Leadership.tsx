@@ -27,25 +27,25 @@ const leadershipRoles = [
   },
 ];
 
-// SDG data with official UN colors and logo-style icons
+// SDG data with official UN colors and proper logo URLs
 const sdgFocus = [
-  { code: '1', name: 'No Poverty', color: '#E5243B', icon: '👥' },
-  { code: '2', name: 'Zero Hunger', color: '#DDA63A', icon: '🍽️' },
-  { code: '3', name: 'Good Health', color: '#4C9F38', icon: '❤️' },
-  { code: '4', name: 'Quality Education', color: '#C5192D', icon: '📚' },
-  { code: '5', name: 'Gender Equality', color: '#FF3A21', icon: '⚧️' },
-  { code: '6', name: 'Clean Water', color: '#26BDE2', icon: '💧' },
-  { code: '7', name: 'Clean Energy', color: '#FCC30B', icon: '☀️' },
-  { code: '8', name: 'Decent Work', color: '#A21942', icon: '📈' },
-  { code: '9', name: 'Industry & Innovation', color: '#FD6925', icon: '🏭' },
-  { code: '10', name: 'Reduced Inequalities', color: '#DD1367', icon: '⚖️' },
-  { code: '11', name: 'Sustainable Cities', color: '#FD9D24', icon: '🏙️' },
-  { code: '12', name: 'Responsible Consumption', color: '#BF8B2E', icon: '♻️' },
-  { code: '13', name: 'Climate Action', color: '#3F7E44', icon: '🌍' },
-  { code: '14', name: 'Life Below Water', color: '#0A97D9', icon: '🐟' },
-  { code: '15', name: 'Life on Land', color: '#56C02B', icon: '🌲' },
-  { code: '16', name: 'Peace & Justice', color: '#00689D', icon: '🕊️' },
-  { code: '17', name: 'Partnerships', color: '#19486A', icon: '🤝' },
+  { code: '1', name: 'No Poverty', color: '#E5243B', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg' },
+  { code: '2', name: 'Zero Hunger', color: '#DDA63A', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-02.jpg' },
+  { code: '3', name: 'Good Health', color: '#4C9F38', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-03.jpg' },
+  { code: '4', name: 'Quality Education', color: '#C5192D', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg' },
+  { code: '5', name: 'Gender Equality', color: '#FF3A21', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg' },
+  { code: '6', name: 'Clean Water', color: '#26BDE2', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-06.jpg' },
+  { code: '7', name: 'Clean Energy', color: '#FCC30B', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-07.jpg' },
+  { code: '8', name: 'Decent Work', color: '#A21942', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-08.jpg' },
+  { code: '9', name: 'Industry & Innovation', color: '#FD6925', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg' },
+  { code: '10', name: 'Reduced Inequalities', color: '#DD1367', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg' },
+  { code: '11', name: 'Sustainable Cities', color: '#FD9D24', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-11.jpg' },
+  { code: '12', name: 'Responsible Consumption', color: '#BF8B2E', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-12.jpg' },
+  { code: '13', name: 'Climate Action', color: '#3F7E44', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-13.jpg' },
+  { code: '14', name: 'Life Below Water', color: '#0A97D9', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-14.jpg' },
+  { code: '15', name: 'Life on Land', color: '#56C02B', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-15.jpg' },
+  { code: '16', name: 'Peace & Justice', color: '#00689D', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg' },
+  { code: '17', name: 'Partnerships', color: '#19486A', image: 'https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg' },
 ];
 
 const certifications = [
@@ -55,16 +55,16 @@ const certifications = [
   { name: 'Product Design Certification', issuer: 'Professional Cert', icon: Heart },
 ];
 
-// SDG Icon component with proper styling
+// SDG Icon component with official UN logo images
 const SDGIcon = ({ sdg }: { sdg: typeof sdgFocus[0] }) => {
   return (
-    <div 
-      className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg"
-      style={{ 
-        backgroundColor: sdg.color,
-      }}
-    >
-      {sdg.code}
+    <div className="w-14 h-14 rounded-lg overflow-hidden shadow-lg">
+      <img 
+        src={sdg.image} 
+        alt={`SDG ${sdg.code}: ${sdg.name}`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
     </div>
   );
 };
