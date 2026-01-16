@@ -27,24 +27,25 @@ const leadershipRoles = [
   },
 ];
 
+// SDG data with official UN colors and logo-style icons
 const sdgFocus = [
-  { code: '1', name: 'No Poverty', color: 'bg-[#E5243B]' },
-  { code: '2', name: 'Zero Hunger', color: 'bg-[#DDA63A]' },
-  { code: '3', name: 'Good Health', color: 'bg-[#4C9F38]' },
-  { code: '4', name: 'Quality Education', color: 'bg-[#C5192D]' },
-  { code: '5', name: 'Gender Equality', color: 'bg-[#FF3A21]' },
-  { code: '6', name: 'Clean Water', color: 'bg-[#26BDE2]' },
-  { code: '7', name: 'Clean Energy', color: 'bg-[#FCC30B]' },
-  { code: '8', name: 'Decent Work', color: 'bg-[#A21942]' },
-  { code: '9', name: 'Industry & Innovation', color: 'bg-[#FD6925]' },
-  { code: '10', name: 'Reduced Inequalities', color: 'bg-[#DD1367]' },
-  { code: '11', name: 'Sustainable Cities', color: 'bg-[#FD9D24]' },
-  { code: '12', name: 'Responsible Consumption', color: 'bg-[#BF8B2E]' },
-  { code: '13', name: 'Climate Action', color: 'bg-[#3F7E44]' },
-  { code: '14', name: 'Life Below Water', color: 'bg-[#0A97D9]' },
-  { code: '15', name: 'Life on Land', color: 'bg-[#56C02B]' },
-  { code: '16', name: 'Peace & Justice', color: 'bg-[#00689D]' },
-  { code: '17', name: 'Partnerships', color: 'bg-[#19486A]' },
+  { code: '1', name: 'No Poverty', color: '#E5243B', icon: '👥' },
+  { code: '2', name: 'Zero Hunger', color: '#DDA63A', icon: '🍽️' },
+  { code: '3', name: 'Good Health', color: '#4C9F38', icon: '❤️' },
+  { code: '4', name: 'Quality Education', color: '#C5192D', icon: '📚' },
+  { code: '5', name: 'Gender Equality', color: '#FF3A21', icon: '⚧️' },
+  { code: '6', name: 'Clean Water', color: '#26BDE2', icon: '💧' },
+  { code: '7', name: 'Clean Energy', color: '#FCC30B', icon: '☀️' },
+  { code: '8', name: 'Decent Work', color: '#A21942', icon: '📈' },
+  { code: '9', name: 'Industry & Innovation', color: '#FD6925', icon: '🏭' },
+  { code: '10', name: 'Reduced Inequalities', color: '#DD1367', icon: '⚖️' },
+  { code: '11', name: 'Sustainable Cities', color: '#FD9D24', icon: '🏙️' },
+  { code: '12', name: 'Responsible Consumption', color: '#BF8B2E', icon: '♻️' },
+  { code: '13', name: 'Climate Action', color: '#3F7E44', icon: '🌍' },
+  { code: '14', name: 'Life Below Water', color: '#0A97D9', icon: '🐟' },
+  { code: '15', name: 'Life on Land', color: '#56C02B', icon: '🌲' },
+  { code: '16', name: 'Peace & Justice', color: '#00689D', icon: '🕊️' },
+  { code: '17', name: 'Partnerships', color: '#19486A', icon: '🤝' },
 ];
 
 const certifications = [
@@ -53,6 +54,20 @@ const certifications = [
   { name: 'AI Career Essentials', issuer: 'ALX Africa', icon: Sparkles },
   { name: 'Product Design Certification', issuer: 'Professional Cert', icon: Heart },
 ];
+
+// SDG Icon component with proper styling
+const SDGIcon = ({ sdg }: { sdg: typeof sdgFocus[0] }) => {
+  return (
+    <div 
+      className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg"
+      style={{ 
+        backgroundColor: sdg.color,
+      }}
+    >
+      {sdg.code}
+    </div>
+  );
+};
 
 export const Leadership = () => {
   const ref = useRef(null);
@@ -141,29 +156,38 @@ export const Leadership = () => {
             and community initiatives.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {sdgFocus.map((sdg, index) => {
-              const bgColor = sdg.color.replace('bg-[', '').replace(']', '');
-              return (
-                <motion.div
-                  key={sdg.code}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.6 + index * 0.05 }}
-                  className={`${sdg.color} px-4 py-2 rounded-lg text-white text-sm font-semibold flex items-center gap-2 cursor-pointer transition-all duration-300`}
-                  whileHover={{ 
-                    scale: 1.08,
-                    boxShadow: `0 0 25px ${bgColor}80, 0 0 50px ${bgColor}40`
+          <div className="flex flex-wrap justify-center gap-4">
+            {sdgFocus.map((sdg, index) => (
+              <motion.div
+                key={sdg.code}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.6 + index * 0.05 }}
+                className="group cursor-pointer"
+                whileHover={{ 
+                  scale: 1.1,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div 
+                  className="flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300"
+                  style={{
+                    boxShadow: 'none',
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 0 25px ${sdg.color}80, 0 0 50px ${sdg.color}40`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
                 >
-                  <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">
-                    {sdg.code}
+                  <SDGIcon sdg={sdg} />
+                  <span className="text-xs font-medium text-foreground/80 max-w-[80px] text-center leading-tight">
+                    {sdg.name}
                   </span>
-                  {sdg.name}
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
