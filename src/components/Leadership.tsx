@@ -142,21 +142,28 @@ export const Leadership = () => {
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
-            {sdgFocus.map((sdg, index) => (
-              <motion.div
-                key={sdg.code}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.6 + index * 0.05 }}
-                className={`${sdg.color} px-4 py-2 rounded-lg text-white text-sm font-semibold flex items-center gap-2`}
-                whileHover={{ scale: 1.05 }}
-              >
-                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">
-                  {sdg.code}
-                </span>
-                {sdg.name}
-              </motion.div>
-            ))}
+            {sdgFocus.map((sdg, index) => {
+              const bgColor = sdg.color.replace('bg-[', '').replace(']', '');
+              return (
+                <motion.div
+                  key={sdg.code}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 0.6 + index * 0.05 }}
+                  className={`${sdg.color} px-4 py-2 rounded-lg text-white text-sm font-semibold flex items-center gap-2 cursor-pointer transition-all duration-300`}
+                  whileHover={{ 
+                    scale: 1.08,
+                    boxShadow: `0 0 25px ${bgColor}80, 0 0 50px ${bgColor}40`
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">
+                    {sdg.code}
+                  </span>
+                  {sdg.name}
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
