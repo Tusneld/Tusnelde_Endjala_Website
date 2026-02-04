@@ -5,7 +5,7 @@ import { useInView } from 'framer-motion';
 // Import React hook for DOM references
 import { useRef } from 'react';
 // Import icons from lucide-react icon library
-import { Briefcase, Calendar, Building2, MapPin, TrendingUp } from 'lucide-react';
+import { Calendar, Building2, MapPin } from 'lucide-react';
 
 // TypeScript interface defining the structure of each experience item
 interface ExperienceItem {
@@ -94,68 +94,77 @@ export const Experience = () => {
           <div className="section-divider" />
         </motion.div>
 
-        {/* Experience cards container - max width for readability */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* Map through each experience item and render a card */}
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.title}                        // Unique key for React list rendering
-              initial={{ opacity: 0, y: 50 }}        // Start invisible and 50px below
-              animate={isInView ? { opacity: 1, y: 0 } : {}}  // Animate when in view
-              transition={{ duration: 0.5, delay: index * 0.2 }}  // Stagger animation by index
-              className="group"
-            >
-              {/* Glass-effect card container */}
-              <div className="glass-card p-6 md:p-8">
-                {/* Top row: Type badge and date/location info */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                  {/* Employment type badge (Internship, Volunteer, etc.) */}
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-white ${typeColors[exp.type]} w-fit`}>
-                    {typeLabels[exp.type]}
-                  </span>
+        {/* Experience cards container with timeline - max width for readability */}
+        <div className="max-w-4xl mx-auto relative">
+          {/* Timeline vertical connector line - spans full height of container */}
+          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/30" />
+
+          {/* Space between experience cards */}
+          <div className="space-y-8">
+            {/* Map through each experience item and render a card */}
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={exp.title}                        // Unique key for React list rendering
+                initial={{ opacity: 0, y: 50 }}        // Start invisible and 50px below
+                animate={isInView ? { opacity: 1, y: 0 } : {}}  // Animate when in view
+                transition={{ duration: 0.5, delay: index * 0.2 }}  // Stagger animation by index
+                className="group relative"
+              >
+                {/* Timeline dot - positioned on the vertical line */}
+                <div className="absolute left-4 md:left-8 top-8 w-4 h-4 -translate-x-1/2 rounded-full bg-primary shadow-lg shadow-primary/50 z-10" />
+
+                {/* Glass-effect card container - offset to accommodate timeline */}
+                <div className="glass-card p-6 md:p-8 ml-10 md:ml-16">
+                  {/* Top row: Type badge and date/location info */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                    {/* Employment type badge (Internship, Volunteer, etc.) */}
+                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-white ${typeColors[exp.type]} w-fit`}>
+                      {typeLabels[exp.type]}
+                    </span>
+                    
+                    {/* Date and location container */}
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      {/* Calendar icon with date */}
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {exp.date}
+                      </span>
+                      {/* Location pin icon with location text */}
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {exp.location}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Job title - large and bold */}
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{exp.title}</h3>
                   
-                  {/* Date and location container */}
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    {/* Calendar icon with date */}
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {exp.date}
-                    </span>
-                    {/* Location pin icon with location text */}
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      {exp.location}
-                    </span>
+                  {/* Company name with building icon */}
+                  <div className="flex items-center gap-2 mb-4 text-primary">
+                    <Building2 className="w-5 h-5" />
+                    <span className="font-medium">{exp.company}</span>
+                  </div>
+
+                  {/* Main job description paragraph */}
+                  <p className="text-muted-foreground mb-6">{exp.description}</p>
+
+                  {/* Key achievements/highlights section */}
+                  <div className="space-y-3">
+                    {/* Map through each highlight and render as a bullet point */}
+                    {exp.highlights.map((highlight, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        {/* Dot bullet point indicator */}
+                        <span className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                        {/* Highlight text */}
+                        <span className="text-sm text-muted-foreground">{highlight}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-
-                {/* Job title - large and bold */}
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{exp.title}</h3>
-                
-                {/* Company name with building icon */}
-                <div className="flex items-center gap-2 mb-4 text-primary">
-                  <Building2 className="w-5 h-5" />
-                  <span className="font-medium">{exp.company}</span>
-                </div>
-
-                {/* Main job description paragraph */}
-                <p className="text-muted-foreground mb-6">{exp.description}</p>
-
-                {/* Key achievements/highlights section */}
-                <div className="space-y-3">
-                  {/* Map through each highlight and render as a bullet point */}
-                  {exp.highlights.map((highlight, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      {/* Trending up icon as bullet point indicator */}
-                      <TrendingUp className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                      {/* Highlight text */}
-                      <span className="text-sm text-muted-foreground">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
